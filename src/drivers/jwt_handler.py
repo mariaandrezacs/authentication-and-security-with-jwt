@@ -4,8 +4,6 @@ import jwt
 
 from ..configs.jwt_configs import jwt_infos
 
-# print()
-# print(jwt_infos)
 
 class JwtHandler:
     def create_jwt_token(self, body: dict = {}) -> str:
