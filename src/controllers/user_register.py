@@ -1,5 +1,3 @@
-
-
 from src.drivers.password_handler import PasswordHandler
 from src.models.interface.user_repository import UserRepositoryInterface
 
