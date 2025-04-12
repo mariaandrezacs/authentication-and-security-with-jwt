@@ -1,8 +1,10 @@
 from src.drivers.password_handler import PasswordHandler
 from src.models.interface.user_repository import UserRepositoryInterface
 
+from .interfaces.user_register import UserRegisterInterface
 
-class UserRegister:
+
+class UserRegister(UserRegisterInterface):
     def __init__(self, user_repository: UserRepositoryInterface) -> None:
         self.__user_repository = user_repository
         self.__password_handle = PasswordHandler()
@@ -20,8 +22,4 @@ class UserRegister:
         self.__user_repository.registry_user(username, hashed_password)
 
     def __format_response(self, username: str) -> dict:
-        return {
-            "type": "User",
-            "count": 1,
-            "username": username
-        }
+        return {"type": "User", "count": 1, "username": username}
