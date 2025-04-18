@@ -4,6 +4,7 @@ from ...views.http_types.http_request import HttpRequest
 from ..composer.balance_editor_composer import balance_editor_composer
 from ..composer.login_creator_composer import login_creator_composer
 from ..composer.user_register_composer import user_register_composer
+from ..middlewares.auth_jwt import auth_jwt_verify
 
 bank_routes_bp = Blueprint("bank_routes", __name__)
 
@@ -24,6 +25,9 @@ def create_login():
 
 @bank_routes_bp.route("/bank/balance/<user_id>", methods=["PATCH"])
 def edit_balance(user_id):
-    http_request = HttpRequest(body=request.json, params={"user_id": user_id})
+    token_informations = auth_jwt_verify()
+    http_request = HttpRequest(
+        body=request.json, params={"user_id": user_id}, token_infos=token_informations
+    )
     http_response = balance_editor_composer().handle(http_request)
     return jsonify(http_response.body), http_response.status_code
