@@ -1,4 +1,4 @@
-# authentication-and-security-with-jwt
+# Authentication Service
 
 ## Descrição
 
